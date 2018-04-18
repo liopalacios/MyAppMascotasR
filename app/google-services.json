@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "643959106364",
+    "firebase_url": "https://fpalaciosjulio.firebaseio.com",
+    "project_id": "fpalaciosjulio",
+    "storage_bucket": "fpalaciosjulio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:643959106364:android:28a7adc6cfc85463",
+        "android_client_info": {
+          "package_name": "com.example.hp.myappmascotas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "643959106364-0ivd8ue53avcpqncovjuugdul7cl7p4u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hp.myappmascotas",
+            "certificate_hash": "3fa12825ee60c29c6e304a1e3fb7e9c51de5cd95"
+          }
+        },
+        {
+          "client_id": "643959106364-uhobgdsnbqg9ad14ehc441rk8tdi3rgr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDPhhMqc0gaoAlGgGAp74sLjWrDAXSdn8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "643959106364-uhobgdsnbqg9ad14ehc441rk8tdi3rgr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
