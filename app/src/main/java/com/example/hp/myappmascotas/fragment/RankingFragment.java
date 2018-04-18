@@ -49,7 +49,7 @@ public class RankingFragment extends Fragment
     public  void inicializarListaMascotas(){
         mascota = new ArrayList<Mascota>();
         galerias = new ArrayList<Galeria>();
-        mascota.add(new Mascota(1,"pelusa",R.drawable.chancho,18));
+       // mascota.add(new Mascota(1,"pelusa",R.drawable.chancho,18));
         galerias.add(new Galeria(1,R.drawable.chancho));
         galerias.add(new Galeria(1,R.drawable.ch1));
         galerias.add(new Galeria(1,R.drawable.ch2));
@@ -63,13 +63,13 @@ public class RankingFragment extends Fragment
         galerias.add(new Galeria(1,R.drawable.ch10));
         galerias.add(new Galeria(1,R.drawable.ch11));
         galerias.add(new Galeria(1,R.drawable.ch12));
-        mascota.add(new Mascota(2,"gatorade",R.drawable.gato,13));
+       /* mascota.add(new Mascota(2,"gatorade",R.drawable.gato,13));
         mascota.add(new Mascota(3,"josefino",R.drawable.perro1,14));
         mascota.add(new Mascota(4,"cleopatra",R.drawable.perro2,15));
         mascota.add(new Mascota(5,"pelota",R.drawable.perro3,22));
         mascota.add(new Mascota(6,"princesa",R.drawable.perro4,11));
         mascota.add(new Mascota(7,"pablo",R.drawable.perro5,9));
-        mascota.add(new Mascota(8,"lassy",R.drawable.perro6,8));
+        mascota.add(new Mascota(8,"lassy",R.drawable.perro6,8));*/
     }
     public void inicializarAdaptador(){
         mascotaAdapter = new GaleryAdapter(galerias);

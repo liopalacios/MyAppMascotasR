@@ -19,10 +19,19 @@ import com.example.hp.myappmascotas.fragment.MascotasFragment;
 import com.example.hp.myappmascotas.fragment.RankingFragment;
 import com.example.hp.myappmascotas.pojo.Galeria;
 import com.example.hp.myappmascotas.pojo.Mascota;
+import com.example.hp.myappmascotas.resApi.EndPointsApi;
+import com.example.hp.myappmascotas.resApi.adapter.RestApiAdapter;
+import com.example.hp.myappmascotas.resApi.model.UsuarioResponse;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
+    private static final String EMISOR = "LEYTER INSTA";
     ArrayList<Mascota> mascota;
     ArrayList<Galeria> galerias;
     private RecyclerView recyclerView;
@@ -75,12 +84,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.icStar:
-                Intent intent = new Intent(MainActivity.this,ContactoActivity.class);
+                Intent intent = new Intent(MainActivity.this,RankingActivity.class);
                 startActivity(intent);
                 return true;
             case R.id.itContacto:
                 Intent intentCon = new Intent(MainActivity.this,ContactoActivity.class);
                 startActivity(intentCon);
+                return true;
+            case R.id.itRecibirNoti:
+                String token = FirebaseInstanceId.getInstance().getToken();
+                Log.d(" TOKEN MAIN-ACTIVITY ",token);
+                enviarTokenRegistro(token,EMISOR);
                 return true;
             case R.id.itAcercaDe:
                 Intent intentAce = new Intent(MainActivity.this,AcercaActivity.class);
@@ -91,13 +105,26 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void inicializarAdaptador(){
-        mascotaAdapter = new MascotaAdapter(mascota);
+    private void enviarTokenRegistro(String toke,String user) {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndPointsApi endPoint = restApiAdapter.establecerConexionRestApi();
+        Call<UsuarioResponse> usuarioResponseCall = endPoint.regitrarTokenId(toke,user);
+        usuarioResponseCall.enqueue(new Callback<UsuarioResponse>() {
+            @Override
+            public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
+                UsuarioResponse usuarioResponse = response.body();
+                Log.d("FIREBASE ONRESPONSE",usuarioResponse.getUsuario());
+                Log.d("FIREBASE TOKEN RESPONSE",usuarioResponse.getToken());
+            }
 
-        recyclerView.setAdapter(mascotaAdapter);
+            @Override
+            public void onFailure(Call<UsuarioResponse> call, Throwable t) {
 
+            }
+        });
     }
-    public  void inicializarListaMascotas(){
+
+    /*public  void inicializarListaMascotas(){
         mascota = new ArrayList<Mascota>();
         galerias = new ArrayList<Galeria>();
         mascota.add(new Mascota(1,"pelusa",R.drawable.chancho,18));
@@ -114,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         mascota.add(new Mascota(6,"princesa",R.drawable.perro4,11));
         mascota.add(new Mascota(7,"pablo",R.drawable.perro5,9));
         mascota.add(new Mascota(8,"lassy",R.drawable.perro6,8));
-    }
+    }*/
     private ArrayList<Fragment> agregarFragments (){
 
         ArrayList<Fragment> fragments = new ArrayList<>();

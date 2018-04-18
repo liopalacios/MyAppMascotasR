@@ -18,6 +18,10 @@
         android:orderInCategory="100"
         ></item>
     <item
+        android:id="@+id/itRecibirNoti"
+        android:title="@string/app_recibirnoti"
+        android:orderInCategory="100" />
+    <item
         android:id="@+id/itLogout"
         android:title="@string/app_logout"
         android:orderInCategory="100"

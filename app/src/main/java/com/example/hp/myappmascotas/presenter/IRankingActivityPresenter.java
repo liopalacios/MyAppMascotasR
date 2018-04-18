@@ -5,4 +5,6 @@ package com.example.hp.myappmascotas.presenter;
  */
 
 public interface IRankingActivityPresenter {
+    public void obtenerMascotasBaseDatos();
+    public void mostrarMascotasActivity();
 }

@@ -3,5 +3,6 @@
     <dimen name="cv_bottom">6dp</dimen>
     <dimen name="cv_radius">4dp</dimen>
     <dimen name="t_elevation">4dp</dimen>
+    <dimen name="activity_horizontal_margin">6dp</dimen>
 
 </resources>

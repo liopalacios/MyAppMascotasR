@@ -5,23 +5,27 @@ package com.example.hp.myappmascotas.pojo;
  */
 
 public class Mascota {
-    private int id;
+    private String id;
     private String nombre;
-    private int foto;
-    private int like;
+    private String foto;
+    private int like=0;
 
-    public Mascota(int id,String nombre, int foto, int like) {
-        this.id=id;
+    public Mascota(String nombre, String foto, int like) {
+
         this.nombre = nombre;
         this.foto = foto;
         this.like = like;
     }
 
-    public int getId() {
+    public Mascota() {
+
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -33,11 +37,11 @@ public class Mascota {
         this.nombre = nombre;
     }
 
-    public int getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 

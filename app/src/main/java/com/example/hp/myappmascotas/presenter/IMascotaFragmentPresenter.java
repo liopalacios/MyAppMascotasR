@@ -5,4 +5,7 @@ package com.example.hp.myappmascotas.presenter;
  */
 
 public interface IMascotaFragmentPresenter {
+    public void obtenerMascotasBaseDatos();
+    public void mostrarMascotasFragment();
+    void obtenerMediosRecientes();
 }
