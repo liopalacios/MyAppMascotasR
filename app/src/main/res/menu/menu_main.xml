@@ -18,8 +18,20 @@
         android:orderInCategory="100"
         ></item>
     <item
+        android:id="@+id/itEnviarNoti"
+        android:title="@string/app_enviarnoti"
+        android:orderInCategory="100" />
+    <item
         android:id="@+id/itRecibirNoti"
         android:title="@string/app_recibirnoti"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/itMiUbicacion"
+        android:title="@string/app_miUbicacion"
+        android:orderInCategory="100" />
+    <item
+        android:id="@+id/itRecibirNotificaciones"
+        android:title="@string/app_recibirnotificaciones"
         android:orderInCategory="100" />
     <item
         android:id="@+id/itLogout"

@@ -34,27 +34,23 @@ public class MascotasFragmentPresenter implements IMascotaFragmentPresenter {
         this.context=context;
        // obtenerMascotasBaseDatos();
         obtenerMediosRecientes();
+        enviarKeyIdInstagram();
     }
 
     @Override
     public void obtenerMediosRecientes() {
         RestApiAdapter restApiAdapter = new RestApiAdapter();
         Gson gsonMediaRecent = restApiAdapter.construyeGsonDeserializadorMediaPrecent();
-        Log.e("RESPONSES","JSON12 "+gsonMediaRecent);
         EndPointsApi endPointsApi = restApiAdapter.establecerConexionApiInstagram(gsonMediaRecent);
-        Log.e("RESPONSES","JSON13 "+endPointsApi);
         Call<MascotaResponse> mascotaResponseCall = endPointsApi.getRecentMedia();
-        Log.e("RESPONSES","JSON14 "+mascotaResponseCall);
         mascotaResponseCall.enqueue(new Callback<MascotaResponse>() {
             @Override
             public void onResponse(Call<MascotaResponse> call, Response<MascotaResponse> response) {
-
-                Log.e("RESPONSES","JSON "+response.body());
                 MascotaResponse mascotaResponse = response.body();
+                Log.e("RESPONSES","JSON "+mascotaResponse.getMascotaArray());
                 mascotas = mascotaResponse.getMascotaArray();
                 mostrarMascotasFragment();
             }
-
             @Override
             public void onFailure(Call<MascotaResponse> call, Throwable t) {
                 Toast.makeText(context,"MENSAJE DE PRUEBA DE ERRORES",Toast.LENGTH_LONG);
@@ -64,19 +60,24 @@ public class MascotasFragmentPresenter implements IMascotaFragmentPresenter {
     }
 
     @Override
+    public void enviarKeyIdInstagram() {
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        Gson gsonMediaRecent = restApiAdapter.construyeGsonDeserializadorSelf();
+        EndPointsApi endPointsApi = restApiAdapter.establecerConexionApiInstagram(gsonMediaRecent);
+        Call<MascotaResponse> mascotaResponseCall = endPointsApi.getRecentMedia();
+
+
+    }
+
+    @Override
     public void obtenerMascotasBaseDatos() {
         constructorMascotasInteractor=new ConstructorMascotasInteractor(context);
         mascotas = constructorMascotasInteractor.obtenerMascotas();
         mostrarMascotasFragment();
     }
-
     @Override
     public void mostrarMascotasFragment() {
         iMascotasFragmentView.inicializarAdapterMascota(iMascotasFragmentView.crearAdapter(mascotas));
-
         iMascotasFragmentView.generarGridLayout();
-
     }
-
-
 }

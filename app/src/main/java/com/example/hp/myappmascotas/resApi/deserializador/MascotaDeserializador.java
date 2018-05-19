@@ -24,22 +24,19 @@ public class MascotaDeserializador implements JsonDeserializer<MascotaResponse>{
     @Override
     public MascotaResponse deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         Gson gson = new Gson();
-        Log.e("DESIARIZER"," desearia ");
         MascotaResponse mascotaResponse = gson.fromJson(json,MascotaResponse.class);
         JsonArray mascotaResponseData = json.getAsJsonObject().getAsJsonArray(JsonKey.MEDIA_RESPONSE_ARRAY);
-        Log.e("DESIARIZER 20"," "+mascotaResponseData);
         mascotaResponse.setMascotaArray(deserializadorMascota(mascotaResponseData));
         return mascotaResponse;
     }
     private ArrayList<Mascota>deserializadorMascota(JsonArray mascotaArrayData){
         ArrayList<Mascota> mascotas=new ArrayList<>();
-        Log.e("DESIARIZER"," "+mascotaArrayData.size());
         for (int i=0;i<mascotaArrayData.size();i++){
             JsonObject mascotaResponseDataObject = mascotaArrayData.get(i).getAsJsonObject();
             JsonObject userJson = mascotaResponseDataObject.getAsJsonObject(JsonKey.USER);
             String id = userJson.get(JsonKey.ID).getAsString();
             String nombre = userJson.get(JsonKey.FULL_NAME).getAsString();
-            Log.e("DESRIALIZADOR 1 ",nombre+" "+id);
+
             JsonObject imageJson = mascotaResponseDataObject.getAsJsonObject(JsonKey.MEDIA_IMAGES);
             JsonObject stdResolution = imageJson.getAsJsonObject(JsonKey.RESOLUTION);
             String urlFoto = stdResolution.get(JsonKey.MEDIA_URL).getAsString();

@@ -7,6 +7,7 @@
     <string name="app_contacto">Contacto</string>
     <string name="app_acercade">Acerca de</string>
     <string name="app_logout">Logout</string>
+    <string name="app_name_toolbar">APP INSTAGRAM FUSION</string>
     <string name="app_acerca">
     Mi nombre es Leyter Palacios, vivo en la ciudad de Lima, Peru.
     La informática es mi hobby, mi profesión y mi pasión. Soy un afortunado usuario y desarrollador de software libre.
@@ -17,5 +18,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="app_likes">0</string>
     <string name="app_recibirnoti">Recibir notificacion</string>
+    <string name="app_miUbicacion">Mi Ubicacion</string>
+    <string name="title_activity_mi_ubicacion">Map</string>
+    <string name="app_enviarnoti">Enviar notificacion</string>
+    <string name="app_recibirnotificaciones">Recibir Notificaciones</string>
+    <string name="animacion_foto">animafoto</string>
+    <string name="accion_toque">Accion de toque</string>
 
 </resources>

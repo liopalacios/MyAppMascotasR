@@ -1,30 +1,30 @@
 package com.example.hp.myappmascotas.resApi.model;
 
 public class UsuarioResponse {
-    private String usuario;
-    private String token;
+    private String idusuario;
+    private String nombre;
 
-    public UsuarioResponse(String usuario, String token) {
-        this.usuario = usuario;
-        this.token = token;
+    public UsuarioResponse(String idusuario, String nombre) {
+        this.idusuario = idusuario;
+        this.nombre = nombre;
     }
 
     public UsuarioResponse() {
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getIdusuario() {
+        return idusuario;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setIdusuario(String idusuario) {
+        this.idusuario = idusuario;
     }
 
-    public String getToken() {
-        return token;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

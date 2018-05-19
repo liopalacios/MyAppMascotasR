@@ -7,17 +7,28 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.hp.myappmascotas.R;
 import com.example.hp.myappmascotas.adapter.GaleryAdapter;
 import com.example.hp.myappmascotas.adapter.MascotaAdapter;
 import com.example.hp.myappmascotas.pojo.Galeria;
 import com.example.hp.myappmascotas.pojo.Mascota;
+import com.example.hp.myappmascotas.resApi.EndPointsApi;
+import com.example.hp.myappmascotas.resApi.adapter.RestApiAdapter;
+import com.example.hp.myappmascotas.resApi.model.UsuarioResponse;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -25,13 +36,16 @@ import java.util.ArrayList;
  */
 public class RankingFragment extends Fragment
 {
+    private static final String EMISOR = "Mascota perro";
     ArrayList<Mascota> mascota;
     ArrayList<Galeria> galerias;
     GaleryAdapter mascotaAdapter;
     private RecyclerView recyclerView;
+    private ImageView imageView;
     public RankingFragment() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,9 +56,54 @@ public class RankingFragment extends Fragment
         /*LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);*/
+        imageView = (ImageView)v.findViewById(R.id.ivFotoPerfil);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"MNSAG TOAS",Toast.LENGTH_SHORT).show();
+                String token = FirebaseInstanceId.getInstance().getToken();
+                Log.d(" TOKEN MAIN-ACTIVITY ",token);
+                enviarTokenRegistro(token,EMISOR);
+            }
+        });
         inicializarListaMascotas();
         inicializarAdaptador();
+
         return v;
+    }
+    private void enviarTokenRegistro(String toke,String user) {
+        UsuarioResponse usuarioResponse = new UsuarioResponse("leyter","-LBSnSqKnUSGP_3ZUcxk");
+        RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndPointsApi endPoint = restApiAdapter.establecerConexionRestApi();
+        Call<UsuarioResponse>usuarioResponseCall=endPoint.toqueAnimal(usuarioResponse.getIdusuario(),usuarioResponse.getNombre());
+
+        usuarioResponseCall.enqueue(new Callback<UsuarioResponse>() {
+            @Override
+            public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
+                UsuarioResponse usuarioResponse1 = response.body();
+            }
+            @Override
+            public void onFailure(Call<UsuarioResponse> call, Throwable t) {
+
+            }
+        });
+
+        /*RestApiAdapter restApiAdapter = new RestApiAdapter();
+        EndPointsApi endPoint = restApiAdapter.establecerConexionRestApi();
+        Call<UsuarioResponse> usuarioResponseCall = endPoint.regitrarTokenId(toke,user);
+        usuarioResponseCall.enqueue(new Callback<UsuarioResponse>() {
+            @Override
+            public void onResponse(Call<UsuarioResponse> call, Response<UsuarioResponse> response) {
+                UsuarioResponse usuarioResponse = response.body();
+                Log.d("FIREBASE ONRESPONSE ",usuarioResponse.getUsuario());
+                Log.d("FIREBASE TOKEN RESP ",usuarioResponse.getToken());
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioResponse> call, Throwable t) {
+
+            }
+        });*/
     }
     public  void inicializarListaMascotas(){
         mascota = new ArrayList<Mascota>();
